@@ -1,0 +1,22 @@
+version: 3
+
+tasks:
+  build:
+    desc: Build the project
+    cmds:
+      - rm -rf dist
+      - bun build public/index.html --outdir=dist --minify --split
+  build:dev:
+    desc: Build the project for development
+    cmds:
+      - rm -rf dist
+      - bun build public/index.html --outdir=dist --split --watch
+  serve:
+    desc: Serve the project
+    cmds:
+      - bunx serve dist
+  dev:
+    desc: Serve the project for development
+    deps:
+      - build:dev
+      - serve
